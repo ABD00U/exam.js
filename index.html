@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document</title>
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div
+      class="w-100 h-100 position-fixed top-0 bottom-0 bg-black z-2 text-center loading"
+    >
+      <span
+        class="loader z-3 position-fixed top-50 start-50 translate-middle"
+      ></span>
+    </div>
+
+
+    <div class="boxmodal h-100 bg-black position-fixed top-0 d-flex z-1">
+      <div class="inner bg-black h-100 position-relative">
+        <div class="text-inner pt-4 position-absolute">
+          <a class="text-white items" id="search">search</a>
+          <br />
+          <a class="text-white items" id="cate">Categories</a>
+          <br />
+
+          <a class="text-white items" id="area">area</a>
+          <br />
+
+          <a class="text-white items" id="Ingredients">Ingredients</a>
+          <br />
+
+          <a class="text-white items" id="contact">Contact Us</a>
+        </div>
+        <div class="text-white position-absolute bottom-0 p-4">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-solid fa-globe"></i>
+          <p>Copyright Â© 2019 All Rights Reserved.</p>
+        </div>
+      </div>
+      <div
+        class="side h-100 bg-white d-flex flex-column justify-content-between py-4 text-center p-2 bg-white text-black"
+      >
+        <img src="img/logo.png" class="w-100" />
+
+        <i class="fa-solid fa-bars fs-3 open"></i>
+        <i class="fa-solid fa-xmark fs-3 d-none close"></i>
+        <div class="d-flex flex-column">
+          <i class="fa-solid fa-globe"></i>
+          <i class="fa-solid fa-circle-nodes pt-1"></i>
+        </div>
+      </div>
+      
+    </div>
+
+    <div>
+      <div class="container" id="search-content"></div>
+
+      <div class="container temphide">
+        <div class="row row-cols-1 row-cols-md-4 g-4 ms-5 mt-4" id="show">
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="is/bootstrap.bundle.js"></script>
+    <script src="is/jquery-3.7.1.min.js"></script>
+    <script src="is/main.js"></script>
+  </body>
+</html>
