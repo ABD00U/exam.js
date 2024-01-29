@@ -207,7 +207,6 @@ $("#search").click(function () {
   $(".close").addClass("d-none");
 
   $("#searchid").on("keyup", function () {
-
     let searchinput = document.getElementById("searchid");
     let searchid = searchinput.value;
     getsearchid(searchid);
@@ -221,7 +220,6 @@ $("#search").click(function () {
       let cate = await home.json();
       searchidlist = cate.meals;
       console.log(cate);
-      
 
       showsearchid();
       load();
@@ -355,37 +353,37 @@ $("#contact").click(function () {
     <div class="container w-75 text-center">
         <div class="row g-4">
             <div class="col-md-6">
-                <input id="nameInput" onkeyup="inputsValidation()" type="text" class="form-control w-100" placeholder="Enter Your Name">
+                <input id="username"  type="text" class="form-control w-100" placeholder="Enter Your Name">
                 <div id="nameAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Special characters and numbers not allowed
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="emailInput" onkeyup="inputsValidation()" type="email" class="form-control w-100 " placeholder="Enter Your Email">
+                <input id="usermail"  type="email" class="form-control w-100 " placeholder="Enter Your Email">
                 <div id="emailAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Email not valid *exemple@yyy.zzz
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="phoneInput" onkeyup="inputsValidation()" type="text" class="form-control w-100 " placeholder="Enter Your Phone">
+                <input id="userphone"  type="text" class="form-control w-100 " placeholder="Enter Your Phone">
                 <div id="phoneAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid Phone Number
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="ageInput" onkeyup="inputsValidation()" type="number" class="form-control w-100 " placeholder="Enter Your Age">
+                <input id="userage"  type="number" class="form-control w-100 " placeholder="Enter Your Age">
                 <div id="ageAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid age
                 </div>
             </div>
             <div class="col-md-6">
-                <input  id="passwordInput" onkeyup="inputsValidation()" type="password" class="form-control w-100 " placeholder="Enter Your Password">
+                <input  id="pass"  type="password" class="form-control w-100 " placeholder="Enter Your Password">
                 <div id="passwordAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid password *Minimum eight characters, at least one letter and one number:*
                 </div>
             </div>
             <div class="col-md-6">
-                <input  id="repasswordInput" onkeyup="inputsValidation()" type="password" class="form-control w-100 " placeholder="Repassword">
+                <input  id="re-pass"  type="password" class="form-control w-100 " placeholder="Repassword">
                 <div id="repasswordAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid repassword 
                 </div>
@@ -583,4 +581,110 @@ function showalldetails() {
   });
 
   document.getElementById("show").innerHTML = temp;
+}
+
+const nameRegex = /^[a-zA-Z]{3,60}/;
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const ageRegex = /^([5-9]|[1-9][0-9]|100)$/;
+const telRegex = /^0\d{8,10}$/;
+const passRegex = /.{5,50}/;
+
+$("#username").on("keyup", () => {
+  if (isValidName()) {
+    console.log("validName");
+    $("#namerrorMessage").addClass("d-none");
+    enableBtn();
+  } else {
+    $("#namerrorMessage").removeClass("d-none");
+  }
+});
+$("#usermail").on("keyup", () => {
+  if (isValidEmail()) {
+    console.log("validmail");
+    $("#mailerrorMessage").addClass("d-none");
+    enableBtn();
+  } else {
+    $("#mailerrorMessage").removeClass("d-none");
+  }
+});
+
+$("#userphone").on("keyup", () => {
+  if (isValidPhoneNumber()) {
+    console.log("validtel");
+    $("#phoneerrorMessage").addClass("d-none");
+
+    enableBtn();
+  } else {
+    $("#phoneerrorMessage").removeClass("d-none");
+  }
+});
+
+$("#userage").on("keyup", () => {
+  if (isValidAge()) {
+    console.log("validage");
+    $("#ageerrorMessage").addClass("d-none");
+
+    enableBtn();
+  } else {
+    $("#ageerrorMessage").removeClass("d-none");
+  }
+});
+
+$("#pass").on("keyup", () => {
+  if (isValidPassword()) {
+    console.log("validpass");
+
+    $("#passerrorMessage").addClass("d-none");
+    enableBtn();
+  } else {
+    $("#passerrorMessage").removeClass("d-none");
+  }
+});
+
+$("#re-pass").on("keyup", () => {
+  if (isValidRePassword()) {
+    console.log("validre-pass");
+
+    enableBtn();
+  } else {
+  }
+});
+
+function isValidName() {
+  return nameRegex.test($("#username").val());
+}
+
+function isValidEmail() {
+  return emailRegex.test($("#usermail").val());
+}
+
+function isValidPhoneNumber() {
+  return telRegex.test($("#userphone").val());
+}
+
+function isValidAge() {
+  return ageRegex.test($("#userage").val());
+}
+
+function isValidPassword() {
+  return passRegex.test($("#pass").val());
+}
+
+function isValidRePassword() {
+  return $("#re-pass").val() === $("#pass").val();
+}
+
+function enableBtn() {
+  if (
+    isValidName() &&
+    isValidEmail() &&
+    isValidPhoneNumber() &&
+    isValidAge() &&
+    isValidPassword() &&
+    isValidRePassword()
+  ) {
+    // document.getElementById('submit').classList.remove("d-none'")
+    // document.getElementById('submit').removeAttribute("disabled")
+    $("#submit").removeAttr("disabled");
+  }
 }
